@@ -4,6 +4,16 @@ import model.SMS;
 import java.time.format.DateTimeFormatter;
 
 public class TimService implements SMSSender{
+	private static  TimService instance;
+
+	private TimService(){}
+
+	public static TimService getInstance(){
+		if(instance == null){
+			instance = new TimService();
+		}
+		return instance;
+	}
 
 	@Override
 	public boolean sendSMS(SMS sms) {
