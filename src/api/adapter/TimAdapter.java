@@ -1,5 +1,6 @@
-package api;
+package api.adapter;
 
+import api.TimService;
 import model.SMS;
 
 public class TimAdapter implements SMSSender {

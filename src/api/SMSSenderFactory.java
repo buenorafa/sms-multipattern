@@ -1,5 +1,9 @@
 package api;
 
+import api.adapter.SMSSender;
+import api.adapter.TimAdapter;
+import api.adapter.VivoAdapter;
+
 // AdapterFactory
 public class SMSSenderFactory {
 

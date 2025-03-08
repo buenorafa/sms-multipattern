@@ -1,5 +1,6 @@
-package api;
+package api.translation.decorator;
 
+import api.SMSService;
 import model.SMS;
 
 public class SMSServiceTranslateDecorator implements SMSServiceInterface {

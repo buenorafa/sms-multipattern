@@ -1,5 +1,6 @@
 package api;
 
+import api.adapter.SMSSender;
 import model.SMS;
 
 import java.time.format.DateTimeFormatter;
