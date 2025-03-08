@@ -4,8 +4,6 @@ import model.SMS;
 public class Main {
     public static void main(String[] args) {
 
-        TranslationService translationService = new WhatsMateTranslationService();
-
         String origem = "1583986762683";
         String destinoVivo = "1583986868686";
         String destinoTim = "4183999669966";
@@ -25,6 +23,7 @@ public class Main {
         // smsService.sendMessage(mensagem3, false);
 
         // com traducao
+        TranslationService translationService = new WhatsMateTranslationService();
         SMSServiceTranslateDecorator smsServiceTranslate = new SMSServiceTranslateDecorator(smsService, translationService);
 
         smsServiceTranslate.sendMessage(mensagem1);
