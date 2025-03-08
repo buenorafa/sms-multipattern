@@ -11,5 +11,4 @@ public class SMSSenderFactory {
             default -> throw new UnsupportedOperationException("Operadora não suportada: " + type);
         };
     }
-
 }

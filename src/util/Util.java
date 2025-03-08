@@ -2,8 +2,8 @@ package util;
 
 public class Util {
 
-    public String getAdapterType(String phoneNumber) {
-        if (phoneNumber == null || phoneNumber.length() != 13 || !isNumeric(phoneNumber)) {
+    public static String getAdapterType(String phoneNumber) {
+        if (!isValidPhoneNumber(phoneNumber)) {
             throw new IllegalArgumentException("Numero de telefone inválido");
         }
         int csp;
@@ -20,7 +20,11 @@ public class Util {
         };
     }
 
-    private boolean isNumeric(String str) {
+    private static boolean isNumeric(String str) {
         return str != null && str.matches("\\d+");
+    }
+
+    public static boolean isValidPhoneNumber(String destino) {
+        return destino != null && destino.length() == 13 && isNumeric(destino);
     }
 }
