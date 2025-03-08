@@ -5,7 +5,6 @@ public class Main {
     public static void main(String[] args) {
 
         TranslationService translationService = new WhatsMateTranslationService();
-        SMSService smsService = new SMSService(translationService);
 
         String origem = "1583986762683";
         String destinoVivo = "1583986868686";
@@ -18,16 +17,20 @@ public class Main {
         // SMS mensagem3 = new SMS(origem, destinoInvalido, "Essa mensagem não foi gerada pelo Gemini");
 
         // sem traducao
-        smsService.sendMessage(mensagem1, false);
-        smsService.sendMessage(mensagem2, false);
+        SMSService smsService = new SMSService();
+
+        smsService.sendMessage(mensagem1);
+        smsService.sendMessage(mensagem2);
         // inválido
         // smsService.sendMessage(mensagem3, false);
 
         // com traducao
-        smsService.sendMessage(mensagem1, true);
-        smsService.sendMessage(mensagem2, true);
+        SMSServiceTranslateDecorator smsServiceTranslate = new SMSServiceTranslateDecorator(smsService, translationService);
+
+        smsServiceTranslate.sendMessage(mensagem1);
+        smsServiceTranslate.sendMessage(mensagem2);
         // inválido
-        // smsService.sendMessage(mensagem3, true);
+        // smsServiceTranslate.sendMessage(mensagem3, true);
 
     }
 }
