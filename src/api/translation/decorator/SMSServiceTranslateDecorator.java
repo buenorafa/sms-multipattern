@@ -5,10 +5,10 @@ import model.SMS;
 
 public class SMSServiceTranslateDecorator implements SMSServiceInterface {
     // wrappee
-    private SMSService service;
+    private SMSServiceInterface service;
     private TranslationService translationService;
 
-    public SMSServiceTranslateDecorator(SMSService service, TranslationService translationService) {
+    public SMSServiceTranslateDecorator(SMSServiceInterface service, TranslationService translationService) {
         this.service = service;
         this.translationService = translationService;
     }

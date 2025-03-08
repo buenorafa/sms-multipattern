@@ -1,4 +1,5 @@
 import api.SMSService;
+import api.translation.decorator.SMSServiceInterface;
 import api.translation.decorator.SMSServiceTranslateDecorator;
 import api.translation.decorator.TranslationService;
 import api.translation.WhatsMateTranslationService;
@@ -17,10 +18,10 @@ public class MainInput {
             destinos = Util.readLinesFromFile(args[0]);
         }
 
-        SMSService smsService = new SMSService();
+        SMSServiceInterface smsService = new SMSService();
 
         TranslationService translationService = new WhatsMateTranslationService();
-        SMSServiceTranslateDecorator smsServiceTranslate = new SMSServiceTranslateDecorator(smsService, translationService);
+        SMSServiceInterface smsServiceTranslate = new SMSServiceTranslateDecorator(smsService, translationService);
 
         String origem = "1583986762683";
         String destino;

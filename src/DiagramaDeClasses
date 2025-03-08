@@ -1,0 +1,123 @@
+@startuml
+title Diagrama de Classes da Solução
+
+'===========================
+' Classes do Pacote Principal
+'===========================
+class MainInput {
+    + main(String[] args)
+}
+
+class Util {
+    + readLinesFromFile(filePath: String) : List<String>
+    + getAdapterType(phoneNumber: String) : String
+    + isValidPhoneNumber(destino: String) : boolean
+}
+
+class SMS {
+    - origem: String
+    - destino: String
+    - texto: String
+    - timestamp: LocalDateTime
+    + SMS(origem: String, destino: String, texto: String)
+    + getTimestamp() : LocalDateTime
+    + getOrigem() : String
+    + getDestino() : String
+    + getTexto() : String
+    + setTexto(texto: String)
+}
+
+'===========================
+' Classes de Serviço (api)
+'===========================
+class SMSService {
+    + sendMessage(sms: SMS)
+}
+
+class TimService {
+    + sendSMS(sms: SMS) : boolean
+    {static} + getInstance() : TimService
+}
+
+class VivoService {
+    + enviarSMS(origem: String, destino: String, time: LocalDateTime, msgs: String[]) : void
+    {static} + getInstance() : VivoService
+}
+
+class SMSException
+
+'===========================
+' Pacote Adapter (api.adapter)
+'===========================
+interface SMSSender {
+    + sendSMS(sms: SMS) : boolean
+}
+
+class TimAdapter {
+    - service: TimService
+    + TimAdapter()
+    + sendSMS(sms: SMS) : boolean
+}
+
+class VivoAdapter {
+    - service: VivoService
+    + VivoAdapter()
+    + sendSMS(sms: SMS) : boolean
+}
+
+class SMSSenderFactory {
+    + getSMSSender(type: String) : SMSSender
+}
+
+'===========================
+' Pacote Translation e Decorator (api.translation)
+'===========================
+interface TranslationService {
+    + translate(fromLang: String, toLang: String, text: String) : String
+}
+
+class WhatsMateTranslationService {
+    + translate(fromLang: String, toLang: String, text: String) : String
+}
+
+interface SMSServiceInterface {
+    + sendMessage(sms: SMS)
+}
+
+class SMSServiceTranslateDecorator {
+    - service: SMSServiceInterface
+    - translationService: TranslationService
+    + SMSServiceTranslateDecorator(service: SMSService, translationService: TranslationService)
+    + sendMessage(sms: SMS)
+}
+
+'===========================
+' Relacionamentos
+'===========================
+
+SMS <- MainInput
+SMS <- SMSServiceInterface
+
+MainInput --> SMSServiceInterface
+MainInput -> Util
+
+SMSService --> Util
+SMSService --> SMSSenderFactory
+
+SMSServiceInterface <|.. SMSService
+SMSServiceInterface <|. SMSServiceTranslateDecorator
+SMSServiceInterface <--o SMSServiceTranslateDecorator
+
+SMSSenderFactory ..> SMSSender
+
+SMSSender <|.. TimAdapter
+SMSSender <|.. VivoAdapter
+
+TimAdapter --> TimService
+VivoAdapter --> VivoService
+VivoAdapter --> SMSException
+
+SMSServiceTranslateDecorator o--> TranslationService
+
+TranslationService <|.. WhatsMateTranslationService
+@enduml
