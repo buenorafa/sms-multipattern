@@ -2,12 +2,14 @@ package api;
 
 import model.SMS;
 
-public class AdapterTim implements SMSSender {
+public class TimAdapter implements SMSSender {
+
     private TimService service;
 
-    public AdapterTim() {
+    public TimAdapter() {
         service = TimService.getInstance();
     }
+
     @Override
     public boolean sendSMS(SMS sms) {
         return service.sendSMS(sms);

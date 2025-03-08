@@ -3,12 +3,11 @@ package api;
 import model.SMS;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
-public class AdapterVivo implements SMSSender{
+public class VivoAdapter implements SMSSender {
     private VivoService service;
 
-    public AdapterVivo() {
+    public VivoAdapter() {
         this.service = VivoService.getInstance();
     }
 
