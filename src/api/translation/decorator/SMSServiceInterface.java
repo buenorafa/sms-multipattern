@@ -1,4 +1,4 @@
-package api;
+package api.translation.decorator;
 
 import model.SMS;
 

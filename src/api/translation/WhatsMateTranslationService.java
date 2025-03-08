@@ -1,6 +1,6 @@
-package api;
+package api.translation;
 
-import api.TranslationService;
+import api.translation.decorator.TranslationService;
 
 import java.io.BufferedReader;
 import java.io.OutputStream;

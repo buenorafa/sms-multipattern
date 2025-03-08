@@ -1,5 +1,7 @@
-package api;
+package api.adapter;
 
+import api.SMSException;
+import api.VivoService;
 import model.SMS;
 
 import java.time.LocalDateTime;

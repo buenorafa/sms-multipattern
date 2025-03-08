@@ -1,12 +1,11 @@
 import api.SMSService;
-import api.SMSServiceTranslateDecorator;
-import api.TranslationService;
-import api.WhatsMateTranslationService;
+import api.translation.decorator.SMSServiceTranslateDecorator;
+import api.translation.decorator.TranslationService;
+import api.translation.WhatsMateTranslationService;
 import model.SMS;
 import util.Util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainInput {

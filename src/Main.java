@@ -1,5 +1,8 @@
 import api.*;
 import model.SMS;
+import api.translation.decorator.SMSServiceTranslateDecorator;
+import api.translation.decorator.TranslationService;
+import api.translation.WhatsMateTranslationService;
 
 public class Main {
     public static void main(String[] args) {
