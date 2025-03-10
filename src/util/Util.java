@@ -20,8 +20,8 @@ public class Util {
         }
 
         return switch (csp) {
-            case 41 -> "TimAdapter";
-            case 15 -> "VivoAdapter";
+            case 41 -> "Tim";
+            case 15 -> "Vivo";
             default -> throw new UnsupportedOperationException("Operadora não suportada: " + csp);
         };
     }

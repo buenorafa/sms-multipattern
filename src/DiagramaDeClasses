@@ -53,12 +53,6 @@ interface SMSSender {
     + sendSMS(sms: SMS) : boolean
 }
 
-class TimAdapter {
-    - service: TimService
-    + TimAdapter()
-    + sendSMS(sms: SMS) : boolean
-}
-
 class VivoAdapter {
     - service: VivoService
     + VivoAdapter()
@@ -110,10 +104,9 @@ SMSServiceInterface <--o SMSServiceTranslateDecorator
 
 SMSSenderFactory ..> SMSSender
 
-SMSSender <|.. TimAdapter
+SMSSender <|.. TimService
 SMSSender <|.. VivoAdapter
 
-TimAdapter --> TimService
 VivoAdapter --> VivoService
 VivoAdapter --> SMSException
 
